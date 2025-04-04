@@ -99,8 +99,13 @@ public class KDTree {
 
         // check if the hyperplane is closer than the closest point
         if (distance * distance < sqDist(a, champion)) {
+
+            // check point on the node
+            if (sqDist(a, tree.point) < sqDist(a, champion))
+                champion = tree.point;
+
             // check closest point in the other subtree
-            closest = closest(other, a, tree.point);
+            closest = closest(other, a, champion);
             if (closest != null && sqDist(a, closest) < sqDist(a, champion))
                 champion = closest;
         }
